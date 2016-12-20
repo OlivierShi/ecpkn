@@ -1,0 +1,68 @@
+//définir le port avec le différent contour
+
+//fixer des constants
+real g = 9.81;
+real H = 1;
+real c = sqrt(g*H);
+real lambda = 50;
+real w = 2*pi*c/lambda;
+real a = 1;
+real k=w/c;
+real k1=k, k2;
+k2 = sqrt(k^2-k1^2);
+real psi = pi/2;
+
+//définition du contour
+border TA1 (t=0, -75) {x=0;       y=t;       label=1;}
+border TA2 (t=0, 100) {x=t;       y=-75;     label=1;}
+border TA3 (t=0, 15)  {x=100;     y=-75+t;   label=1;}
+border TA4 (t=0, 5)   {x=100+t;   y=-60;     label=1;}
+border TA5 (t=0, 10)  {x=105;     y=-60-t;   label=1;}
+border TA6 (t=0, 60)  {x=105+t;   y=-70;     label=1;}
+border TA7 (t=0, 60)  {x=165;     y=-70+t;   label=1;}
+border TA8 (t=0, 60)  {x=165-t;   y=-10;     label=1;}
+border TA9 (t=0, 10)  {x=105;     y=-10-t;   label=1;}
+border TA10(t=0, 5)   {x=105-t;   y=-20;     label=1;}
+border TA11(t=0, 44)  {x=100;     y=-20+t;   label=1;}
+border TA12(t=0, 5)   {x=100+t;   y=24;      label=1;}
+border TA13(t=0, 19)  {x=105;     y=24-t;    label=1;}
+border TA14(t=0, 40)  {x=105+t;   y=5;       label=1;}
+border TA15(t=0, 40)  {x=145;     y=5+t;       label=1;}
+border TA16(t=0, 40)  {x=145-t;   y=45;      label=1;}
+border TA17(t=0, 19)  {x=105;     y=45-t;    label=1;}
+border TA18(t=0, 5)   {x=105-t;   y=26;      label=1;}
+border TA19(t=0, 44)  {x=100;     y=26+t;    label=1;}
+border TA20(t=0, 10)  {x=100+t;   y=70;      label=1;}
+border TA21(t=-0.9*pi, 0.9*pi) {x=110+25*cos(pi/10)+25*cos(t); y=70+25*sin(pi/10)+25*sin(t); label=1;}
+border TA22(t=0, 10)  {x=110-t;   y=70+50*sin(pi/10);      label=1;}
+border TA23(t=0, 30-50*sin(pi/10))  {x=100;     y=70+50*sin(pi/10)+t;    label=1;}
+border TA24(t=0, 100) {x=100-t;   y=100;     label=1;}
+border TA25(t=0, 50)  {x=0;       y=100-t;   label=1;}
+border TA26(t=0, 60)  {x=-t;      y=50;      label=1;}
+border TA27(t=0, 50)  {x=-60;     y=50-t;    label=2;}
+border TA28(t=0, 60)  {x=-60+t;   y=0;       label=1;}
+
+// maillage
+real nb=1;
+mesh Th = buildmesh(TA1(20*nb) + TA2(20*nb) + TA3(20*nb) + TA4(3*nb)
+                  + TA5(5*nb)  + TA6(20*nb) + TA7(20*nb) + TA8(20*nb)
+                  + TA9(3*nb)  + TA10(2*nb) + TA11(10*nb)+ TA12(3*nb)
+                  + TA13(10*nb)+ TA14(20*nb)+ TA15(20*nb)+ TA16(20*nb)
+                  + TA17(10*nb)+ TA18(3*nb) + TA19(10*nb)+ TA20(3*nb)
+                  + TA21(50*nb)+ TA22(3*nb) + TA23(5*nb) + TA24(30*nb)
+                  + TA25(20*nb)+ TA26(20*nb)+ TA27(20*nb)+ TA28(20*nb));
+
+// définition de la formulation variationnelle
+fespace Vh(Th, P2);
+fespace Wh(Th, P1);
+Vh u, v;
+func f = a*cos(k1*x + k2*y + psi);
+problem Vague (u, v)=
+    int2d(Th)(c^2*(dx(u)*dx(v) + dy(u)*dy(v)))
+  - int2d(Th)(w^2*u*v)
+  + on(2, u=f);
+Vague;
+
+Th = adaptmesh(Th, u, err=0.001);
+Vague;
+plot(u, fill=true,wait=1, value=true, ColorScheme=2);
