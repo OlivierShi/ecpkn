@@ -1,7 +1,7 @@
 %% Go Straight Close-Loop Template %%
 
 % Copyright SHI Libin
-% control a LEGA robot 
+% control a LEGO robot 
 
 %% Set up %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear
