@@ -1,0 +1,194 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Olivier Shi Libin</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-01-06"><meta name="DC.source" content="Prob_2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Olivier Shi Libin</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">2 Asservissement d'un pendule invers&eacute;</a></li></ul></div><h2>2 Asservissement d'un pendule invers&eacute;<a name="1"></a></h2><pre class="codeinput">clear;
+M = 8.085; <span class="comment">% kg</span>
+m = 0.825; <span class="comment">% kg</span>
+l = 0.098; <span class="comment">% m</span>
+g = 9.8;   <span class="comment">% kg.m/s^2</span>
+
+<span class="comment">% On supprime x(t), et on peut obtenir</span>
+<span class="comment">% M*g*theta - (M-m)*l*(theta)'' - u(t) = 0</span>
+<span class="comment">% On suppose x = [theta(t);theta(t)']</span>
+<span class="comment">% On peut &eacute;crire 4 matrices</span>
+A = [            0, 1;
+     M*g/((M-m)*l), 0]
+B = [0;1/((M-m)*l)]
+C = [1,0]
+D = 0
+
+n_ctrl = rank(ctrb(A, B));
+n_obsv = rank(obsv(A, C));
+<span class="comment">% On obtient n_ctrl = 2 et n_obsv = 2, donc ce syst&egrave;me est commandable et observable.</span>
+
+<span class="comment">% Concevoir une loi de commande permettant d'obtenir :</span>
+<span class="comment">%  une erreur nulle en r&eacute;gime permanent pour une consigne en &eacute;chelon,</span>
+<span class="comment">%  un d&eacute;passement maximal de 10%,</span>
+<span class="comment">%  un temps de r&eacute;ponse de 1 seconds.</span>
+<span class="comment">% D'apr&egrave;s le figure, on a</span>
+ksi = 0.6;
+omega0 = 5.2;
+<span class="comment">% Donc on peut calculer les poles</span>
+p1 = -ksi*omega0 + omega0*sqrt(ksi^2 - 1);
+p2 = -ksi*omega0 - omega0*sqrt(ksi^2 - 1);
+P = [p1;p2]
+<span class="comment">% On peut calculer F et G</span>
+F = place(A, B, P)
+G = 1./(C*inv(-A+B*F)*B)
+<span class="comment">% Observateur</span>
+L = place(A', C', [-500, -1000]);
+L = L'
+</pre><pre class="codeoutput">
+A =
+
+         0    1.0000
+  111.3636         0
+
+
+B =
+
+         0
+    1.4055
+
+
+C =
+
+     1     0
+
+
+D =
+
+     0
+
+
+P =
+
+  -3.1200 + 4.1600i
+  -3.1200 - 4.1600i
+
+
+F =
+
+   98.4714    4.4396
+
+
+G =
+
+   19.2384
+
+
+L =
+
+   1.0e+05 *
+
+    0.0150
+    5.0011
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Olivier Shi Libin
+%% 2 Asservissement d'un pendule inversé
+clear;
+M = 8.085; % kg
+m = 0.825; % kg
+l = 0.098; % m
+g = 9.8;   % kg.m/s^2
+
+% On supprime x(t), et on peut obtenir
+% M*g*theta - (M-m)*l*(theta)'' - u(t) = 0
+% On suppose x = [theta(t);theta(t)']
+% On peut écrire 4 matrices
+A = [            0, 1;
+     M*g/((M-m)*l), 0]
+B = [0;1/((M-m)*l)]
+C = [1,0]
+D = 0
+
+n_ctrl = rank(ctrb(A, B));
+n_obsv = rank(obsv(A, C));
+% On obtient n_ctrl = 2 et n_obsv = 2, donc ce système est commandable et observable.
+
+% Concevoir une loi de commande permettant d'obtenir :
+%  une erreur nulle en régime permanent pour une consigne en échelon,
+%  un dépassement maximal de 10%,
+%  un temps de réponse de 1 seconds.
+% D'après le figure, on a
+ksi = 0.6;
+omega0 = 5.2;
+% Donc on peut calculer les poles
+p1 = -ksi*omega0 + omega0*sqrt(ksi^2 - 1);
+p2 = -ksi*omega0 - omega0*sqrt(ksi^2 - 1);
+P = [p1;p2]
+% On peut calculer F et G
+F = place(A, B, P)
+G = 1./(C*inv(-A+B*F)*B)
+% Observateur
+L = place(A', C', [-500, -1000]);
+L = L'
+##### SOURCE END #####
+--></body></html>

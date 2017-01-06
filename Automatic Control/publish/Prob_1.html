@@ -1,0 +1,327 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Olivier Shi Libin</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-01-06"><meta name="DC.source" content="Prob_1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Olivier Shi Libin</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">1 Asservissement de position d'un missile guid&eacute;</a></li><li><a href="#2">Q1</a></li><li><a href="#3">Q2</a></li><li><a href="#4">Q3</a></li><li><a href="#5">Q4</a></li><li><a href="#6">Q5</a></li></ul></div><h2>1 Asservissement de position d'un missile guid&eacute;<a name="1"></a></h2><pre class="codeinput">A = [   0,    1,  0, 0, 0;
+     -0.1, -0.5,  0, 0, 0;
+      0.5,    0,  0, 0, 0;
+        0,    0, 10, 0, 0;
+      0.5,    1,  0, 0, 0]
+B = [0;1;0;0;0]
+C = [0,0,0,1,0]
+D = 0
+</pre><pre class="codeoutput">
+A =
+
+         0    1.0000         0         0         0
+   -0.1000   -0.5000         0         0         0
+    0.5000         0         0         0         0
+         0         0   10.0000         0         0
+    0.5000    1.0000         0         0         0
+
+
+B =
+
+     0
+     1
+     0
+     0
+     0
+
+
+C =
+
+     0     0     0     1     0
+
+
+D =
+
+     0
+
+</pre><h2>Q1<a name="2"></a></h2><pre class="codeinput">n = rank(ctrb(A, B))
+<span class="comment">% On peut obtenir n = 4 &lt; 5, donc ce syst&egrave;me n'est pas commandable.</span>
+sys = ss(A,B,C,D)
+</pre><pre class="codeoutput">
+n =
+
+     4
+
+
+sys =
+ 
+  a = 
+         x1    x2    x3    x4    x5
+   x1     0     1     0     0     0
+   x2  -0.1  -0.5     0     0     0
+   x3   0.5     0     0     0     0
+   x4     0     0    10     0     0
+   x5   0.5     1     0     0     0
+ 
+  b = 
+       u1
+   x1   0
+   x2   1
+   x3   0
+   x4   0
+   x5   0
+ 
+  c = 
+       x1  x2  x3  x4  x5
+   y1   0   0   0   1   0
+ 
+  d = 
+       u1
+   y1   0
+ 
+Continuous-time state-space model.
+
+</pre><h2>Q2<a name="3"></a></h2><pre class="codeinput">Fonc_tf = tf(sys)
+<span class="comment">% Donc c'est un syst&egrave;me instable.</span>
+<span class="comment">% C'est &agrave; dire la fonction de transfert du syst&egrave;me initial est</span>
+[NUM,DON] = ss2tf(A,B,C,D)
+</pre><pre class="codeoutput">
+Fonc_tf =
+ 
+             5
+  -----------------------
+  s^4 + 0.5 s^3 + 0.1 s^2
+ 
+Continuous-time transfer function.
+
+
+NUM =
+
+         0         0         0         0    5.0000    0.0000
+
+
+DON =
+
+    1.0000    0.5000    0.1000         0         0         0
+
+</pre><h2>Q3<a name="4"></a></h2><pre class="codeinput">nouv_sys = ss(Fonc_tf)
+A2 = nouv_sys.a
+B2 = nouv_sys.b
+C2 = nouv_sys.c
+D2 = nouv_sys.d
+</pre><pre class="codeoutput">
+nouv_sys =
+ 
+  a = 
+          x1     x2     x3     x4
+   x1   -0.5   -0.4      0      0
+   x2   0.25      0      0      0
+   x3      0  0.125      0      0
+   x4      0      0   0.25      0
+ 
+  b = 
+       u1
+   x1  32
+   x2   0
+   x3   0
+   x4   0
+ 
+  c = 
+       x1  x2  x3  x4
+   y1   0   0   0  20
+ 
+  d = 
+       u1
+   y1   0
+ 
+Continuous-time state-space model.
+
+
+A2 =
+
+   -0.5000   -0.4000         0         0
+    0.2500         0         0         0
+         0    0.1250         0         0
+         0         0    0.2500         0
+
+
+B2 =
+
+    32
+     0
+     0
+     0
+
+
+C2 =
+
+     0     0     0    20
+
+
+D2 =
+
+     0
+
+</pre><h2>Q4<a name="5"></a></h2><p>commadabilit&eacute;</p><pre class="codeinput">n_ctrl = rank(ctrb(A2,B2));
+<span class="comment">% observabilit&eacute;</span>
+n_obsv = rank(obsv(A2,C2));
+<span class="comment">% On a n_ctrl = 4 et n_obsv = 4. Donc c'est commandable et observable.</span>
+</pre><h2>Q5<a name="6"></a></h2><p>Concevoir une loi de commande permettant d'obtenir :  une erreur nulle en r&eacute;gime permanent pour une consigne en &eacute;chelon,  un d&eacute;passement maximal de 10%,  un temps de r&eacute;ponse de 10 seconds. D'apr&egrave;s le figure, on a</p><pre class="codeinput">ksi = 0.6;
+omega0 = 0.52;
+<span class="comment">% Donc on peut calculer les poles</span>
+p1 = -ksi*omega0 + omega0*sqrt(ksi^2 - 1);
+p2 = -ksi*omega0 - omega0*sqrt(ksi^2 - 1);
+<span class="comment">% On suppose</span>
+p3 = -100*ksi*omega0;
+p4 = -200*ksi*omega0;
+<span class="comment">% Alors,</span>
+P = [p1;p2;p3;p4];
+<span class="comment">% On peut calculer F et G</span>
+F = place(A2, B2, P)
+G = 1./(C2*inv(-A2+B2*F)*B2)
+<span class="comment">% Observateur</span>
+L = place(A2', C2', [-500, -1000, -1500, -2000]);
+L = L'
+</pre><pre class="codeoutput">
+F =
+
+   1.0e+03 *
+
+    0.0029    0.2507    1.2402    2.1057
+
+
+G =
+
+  105.2873
+
+
+L =
+
+   1.0e+12 *
+
+    9.5800
+    0.0100
+    0.0000
+    0.0000
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Olivier Shi Libin
+%% 1 Asservissement de position d'un missile guidé
+
+A = [   0,    1,  0, 0, 0;
+     -0.1, -0.5,  0, 0, 0;
+      0.5,    0,  0, 0, 0;
+        0,    0, 10, 0, 0;
+      0.5,    1,  0, 0, 0]
+B = [0;1;0;0;0]
+C = [0,0,0,1,0]
+D = 0
+
+%% Q1
+n = rank(ctrb(A, B))
+% On peut obtenir n = 4 < 5, donc ce système n'est pas commandable.
+sys = ss(A,B,C,D)
+
+%% Q2
+Fonc_tf = tf(sys)
+% Donc c'est un système instable.
+% C'est à dire la fonction de transfert du système initial est
+[NUM,DON] = ss2tf(A,B,C,D)
+
+%% Q3
+nouv_sys = ss(Fonc_tf)
+A2 = nouv_sys.a
+B2 = nouv_sys.b
+C2 = nouv_sys.c
+D2 = nouv_sys.d
+
+%% Q4
+% commadabilité
+n_ctrl = rank(ctrb(A2,B2));
+% observabilité
+n_obsv = rank(obsv(A2,C2));
+% On a n_ctrl = 4 et n_obsv = 4. Donc c'est commandable et observable.
+
+%% Q5
+% Concevoir une loi de commande permettant d'obtenir :
+%  une erreur nulle en régime permanent pour une consigne en échelon,
+%  un dépassement maximal de 10%,
+%  un temps de réponse de 10 seconds.
+% D'après le figure, on a
+ksi = 0.6;
+omega0 = 0.52;
+% Donc on peut calculer les poles
+p1 = -ksi*omega0 + omega0*sqrt(ksi^2 - 1);
+p2 = -ksi*omega0 - omega0*sqrt(ksi^2 - 1);
+% On suppose
+p3 = -100*ksi*omega0;
+p4 = -200*ksi*omega0;
+% Alors,
+P = [p1;p2;p3;p4];
+% On peut calculer F et G
+F = place(A2, B2, P)
+G = 1./(C2*inv(-A2+B2*F)*B2)
+% Observateur
+L = place(A2', C2', [-500, -1000, -1500, -2000]);
+L = L'
+##### SOURCE END #####
+--></body></html>
