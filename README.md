@@ -1,2 +1,2 @@
 # ecpkn
-Des travaux projet dans l'école centrale de Pékin (ECPKN)
+Des travaux projet à l'école centrale de Pékin (ECPKN)
