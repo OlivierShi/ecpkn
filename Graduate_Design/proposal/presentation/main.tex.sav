@@ -71,33 +71,19 @@
 \subsection{循环神经网络语言模型}
 \begin{frame}{循环神经网络语言模型}
 \begin{columns}
-\begin{column}{.7\textwidth}
-
+\begin{column}{.6\textwidth}
+\begin{itemize}
+\item 循环神经网络模型以循环的方式将历史信息传递，这种方式能够很好的应用于语言建模这个任务中
+\item 循环神经网络语言模型（RNNLM）主要分三个模块：嵌入层（Embedding layer），隐藏层（Hidden layer），Softmax层。嵌入层是将离散的词下标映射至连续的向量表示；隐藏层是用来记忆历史信息，以作为预测下个词时的上下文信息（Context）；Softmax层是根据当前的隐藏层状态来预测下个词。
+\end{itemize}
 
 \end{column}
 
-\begin{column}{.3\textwidth}
+\begin{column}{.4\textwidth}
+\centering
+\includegraphics[width=1.\textwidth]{images/rnnlm.png}
 \end{column}
 \end{columns}
-\end{frame}
-
-{\large
-语言模型可以对一段文本的概率进行估计，对信息检索、机器翻译、语音识别等任务有着重要的作用。
-形式化讲，统计语言模型的作用是为一个长度为m 的字符串确定一个概率分布$P(w_1;w_2;\cdots;w_m)$，表示其存在的可能性，其中$w_1$ 到$w_m$ 依次表示这段文
-本中的各个词。一般在实际求解过程中，通常采用下式计算其概率值：
-\begin{equation}
-\label{equ:lm}
-\begin{split}
-P(w_1;w_2; \cdots;w_m) &= P(w_1) P(w_2|w_1) P(w_3|w_1;w_2)\cdots P(w_i | w_1;w_2;\cdots;w_{i-1}) \\
-&\cdots P(w_m | w_1;w_2;\cdots;w_{m-1})
-\end{split}
-\end{equation}
-在实践中，如果文本的长度较长，公式\ref{equ:lm}右部$\cdots P(w_m | w_1;w_2;\cdots;w_{m-1}) $ 的估算会非常困难。因此，研究者们提出使用一个简化模型：n 元模型（n-gram model）。在n 元模型中估算条件概率时，距离大于等于n 的上文词会被忽略，也就是对上述条件概率做了以下近似：
-\begin{equation}
-\label{equ:approx}
-P(w_i | w_1;w_2;\cdots;w_{i-1})  \approx P(w_i | w_{i-(n-1)};\cdots;w_{i-1})
-\end{equation}
-}
 \end{frame}
 
 
@@ -196,11 +182,17 @@ P(w_i | w_1;w_2;\cdots;w_{i-1})  \approx P(w_i | w_{i-(n-1)};\cdots;w_{i-1})
 \end{frame}
 
 
-\begin{frame}{Thanks}
+\begin{frame}
 	\centering
+    \Huge Thank You!
+    
+    \small
+
     谢谢各位老师和同学！请大家批评指正;
 
-	本次开题报告，文献综述，PPT以及后续研究过程中涉及的代码都会上传至Github：\url{https://github.com/OlivierShi/ecpkn}
+	本次开题报告，文献综述，PPT已经上传至Github：
+
+    \url{https://github.com/OlivierShi/ecpkn}
 	
 \end{frame}
 
