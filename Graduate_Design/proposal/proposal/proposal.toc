@@ -1,0 +1,20 @@
+\contentsline {section}{摘要}{1}{Doc-Start}
+\contentsline {section}{\numberline {1}论文选题的背景与意义}{4}{section.1}
+\contentsline {section}{\numberline {2}国内外研究现状及发展动态}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}N-gram 语言模型}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}前馈神经网络语言模型}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}循环神经网络语言模型}{7}{subsection.2.3}
+\contentsline {section}{\numberline {3}研究目标和研究内容}{8}{section.3}
+\contentsline {subsection}{\numberline {3.1}大词表问题分析}{8}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}基于采样近似方法}{9}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}基于字符级别建模方法}{11}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}基于词表分解预测方法}{12}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Hierarchical Softmax}{12}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}LightRNN}{14}{subsubsection.3.4.2}
+\contentsline {section}{\numberline {4}拟解决的关键问题及对应的研究路线}{15}{section.4}
+\contentsline {subsection}{\numberline {4.1}词聚类方法的研究}{15}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}词表交换算法的研究}{15}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}基于词表分解的建模方式研究}{16}{subsection.4.3}
+\contentsline {section}{\numberline {5}论文研究计划}{17}{section.5}
+\contentsline {section}{\numberline {6}总结与展望}{17}{section.6}
+\contentsline {section}{参考文献}{18}{section.6}

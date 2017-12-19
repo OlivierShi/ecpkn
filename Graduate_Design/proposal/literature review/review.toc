@@ -1,0 +1,16 @@
+\contentsline {section}{摘要}{1}{Doc-Start}
+\contentsline {section}{\numberline {1}引言}{4}{section.1}
+\contentsline {section}{\numberline {2}语言模型概述}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}N-gram 语言模型}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}前馈神经网络语言模型}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}循环神经网络语言模型}{8}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}循环神经网络的变种}{9}{subsection.2.4}
+\contentsline {section}{\numberline {3}国内外研究现状及发展动态}{11}{section.3}
+\contentsline {subsection}{\numberline {3.1}大词表问题分析}{11}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}基于采样近似方法}{12}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}基于字符级别建模方法}{14}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}基于词表分解预测方法}{15}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Hierarchical Softmax}{15}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}LightRNN}{16}{subsubsection.3.4.2}
+\contentsline {section}{\numberline {4}总结与展望}{17}{section.4}
+\contentsline {section}{参考文献}{19}{section.4}
