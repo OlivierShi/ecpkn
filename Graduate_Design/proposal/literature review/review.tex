@@ -105,13 +105,8 @@ y =& b(2) +Wx + Uh
 
 \subsection{循环神经网络语言模型}
 \label{sec:rnnlm}
-Mikolov等人提出的循环神经网络语言模型(Recurrent Neural Network based Language Model，RNNLM)则直接对$P(w_i | w_1;w_2;\cdots;w_{i-1}) $ 进行建模，而不使用公式 \ref{equ:approx} 对其进行简化\cite{mikolov2012statistical,DBLP:conf/interspeech/MikolovKBCK10} 。因此，RNNLM 可以利用所有的上文信息，预测下一个词，其模型结构如图 \ref{fig:rnnlm} 所示。
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.85\linewidth]{./figures/rnnlm.png}
-  \caption{循环神经网络语言模型（RNNLM）模型结构图}\label{fig:rnnlm}
-\end{figure}
+Mikolov等人提出的循环神经网络语言模型(Recurrent Neural Network based Language Model，RNNLM)则直接对$P(w_i | w_1;w_2;\cdots;w_{i-1}) $ 进行建模，而不使用公式 \ref{equ:approx} 对其进行简化\cite{mikolov2012statistical,DBLP:conf/interspeech/MikolovKBCK10} 。因此，RNNLM 可以利用所有的上文信息，预测下一个词，其模型结构如图 \ref{fig:rnnlm} 所示。
 
 RNNLM 的核心在于其隐藏层的算法:
 \begin{equation}
@@ -121,6 +116,11 @@ h(i) =\phi(e(w_i) +Wh(i -1))
 其中，$\phi$非线性激活函数。但与NNLM 不同，RNNLM 并不采用n 元近似，而是使用迭代的方式直接对所有上文进行建模。在公式\ref{equ:rnn} 中，h(i) 表示文本中第$i$ 个词$w_i$ 所对应的隐藏层，该隐藏层由当前词的词向量$e(w_i)$ 以及上一个词对应的隐藏层$h(i -1)$ 结合得到。
 
 隐藏层的初始状态为$h(0)$，随着模型逐个读入语料中的词$w_1;w_2; \cdots $, 隐藏层不断地更新为$h(1);h(2); \cdots$ 。根据公式\ref{equ:rnn}，每一个隐藏层包含了当前词的信息以及上一个隐藏层的信息。通过这种迭代推进的方式，每个隐藏层实际上包含了此前所有上文的信息，相比NNLM 只能采用上文n 元短语作为近似，RNNLM 包含了更丰富的上文信息，也有潜力达到更好的效果。RNNLM 的输出层计算方法与NNLM 的输出层一致。
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.85\linewidth]{./figures/rnnlm.png}
+  \caption{循环神经网络语言模型（RNNLM）模型结构图}\label{fig:rnnlm}
+\end{figure}
 
 \subsection{循环神经网络的变种}
 循环神经网络在对较短文本进行建模时表现良好，但当词序列过长时，便会出现梯度消失和梯度爆炸的问题，这使得词与词之间的长期依赖的特性和信息难以被攫取和记忆 \cite{DBLP:journals/tnn/BengioSF94}。针对这个问题，很多RNN的变种被开发出来以提升模型的建模性能，其中最主要的两种模型是长短记忆网络（Long Short-term Memory, LSTM） \cite{DBLP:conf/interspeech/SundermeyerSN12} 和门限记忆节点（Gated Recurrent Unit, GRU） \cite{DBLP:conf/nips/ChungKDGCB15}。LSTM 的计算公式定于如下 \cite{DBLP:journals/neco/HochreiterS97}：
@@ -234,18 +234,18 @@ J_\theta = -\sum\limits_{w_i \in \mathcal{V}}{\left[\log \frac{\exp(z_w)}{\exp(z
 
 NCE方法有完美的理论证明：随着噪声样本$k$的数量增加，NCE导数趋近于Softmax函数的梯度。Mnih和Teh认为抽取25个噪声样本就足以到达Softmax函数的效果，而速度能提升大约45倍，这是一个非常好的提升\cite{DBLP:conf/icml/MnihT12}。
 \subsection{基于字符级别建模方法}
-\begin{figure}
+
+本文在第\ref{sec:vocab}章节分析了由词表过大带来的问题，那么就意识到需要针对这个大词表做一些处理。对此，Kim发明了CharCNN\cite{DBLP:conf/aaai/KimJSR16}，与之前的方法在词级别建模的方法相比，该方法利用英语单词的特殊性——尽管词的数量非常庞大，但是所有词都由26个字母组成。如果能在对字母级别进行建模，那模型的大小能得到缩减。CharCNN就是用字符级别的输入代替原始的词级别的输入，那么这能将词嵌入层的参数从原始的${\mathcal{O}(|\mathcal{V}| \times |\mathcal{D}|)}$缩减至${\mathcal{O}(|Char| \times |\mathcal{D}|)}$，其中${|Char|}$指的是字符的数量。其完整的建模过程在图\ref{fig:charcnn}中列出。
+\begin{figure}[hb]
   \centering
   \includegraphics[width=0.4\linewidth]{./figures/CharCNN.jpg}
   \caption{基于字符级别建模的语言模型}\label{fig:charcnn}
 \end{figure}
-本文在第\ref{sec:vocab}章节分析了由词表过大带来的问题，那么就意识到需要针对这个大词表做一些处理。对此，Kim发明了CharCNN\cite{DBLP:conf/aaai/KimJSR16}，与之前的方法在词级别建模的方法相比，该方法利用英语单词的特殊性——尽管词的数量非常庞大，但是所有词都由26个字母组成。如果能在对字母级别进行建模，那模型的大小能得到缩减。CharCNN就是用字符级别的输入代替原始的词级别的输入，那么这能将词嵌入层的参数从原始的${\mathcal{O}(|\mathcal{V}| \times |\mathcal{D}|)}$缩减至${\mathcal{O}(|Char| \times |\mathcal{D}|)}$，其中${|Char|}$指的是字符的数量。其完整的建模过程在图\ref{fig:charcnn}中列出。
-
 尽管该方法能利用字符数量少的特性来将模型的大小缩减，但是仍然存在着一些问题，比如字符级别只能被用在嵌入层，而Softmax层的参数量没有变，因为它扔需在词表范围内去做预测，那么它还要遭受Softmax层在大词表上预测低效性的困扰。此外，这一方法只能应用于西方语言建模问题上，而对于中文字，这个方法就失效了。
 
 \subsection{基于词表分解预测方法}
 \label{sec:vocab_facto}
-\begin{figure}
+\begin{figure}[b]
   \centering
   \includegraphics[width=0.65\columnwidth]{./figures/softmax3.png}
   \caption{三种不同的在Softmax层中词类组织关系的结构。(a) 层级组织结构；(b) 并列组织结构；(c) 分片组织结构，图中hf表示高频（high frequency），而lf表示低频（low frequency），其中lf0和lf1是根据词的低频程度把词分配起来。另外，在图中蓝色的单元表示包含历史信息和当前输入词信息的隐层，这一点对于这三种方法都一致。}
@@ -270,13 +270,13 @@ cHSM从一开始由Goodman（2001）发明出来一直到现今仍然有相近�
   \item 分片组织结构：该结构认为文本中的词会根据词出现频率而具有不同的重要性，词频越大，那么该词就越重要。基于这个想法，该结构先根据词频大小将词表划分成多个片段，然后给每个片段赋予不同的参数量，如果片段词频大，那么就要赋予更多的参数去学习他们的特征。其结构如图\ref{fig:softmax}中(c)所示。
 \end{itemize}
 
-\begin{figure}
+对于tHSM，它可以被看作是cHSM的延伸。tHSM扩展了cHSM的思想，把Softmax层继续分裂，直到把原始的Softmax分裂成一个树结构（Tree）。所有的词都列在在这棵树的叶子节点（Leaf Node）上，而这棵树的中间节点表示词表的深层次结构，如图\ref{fig:thsm}所示。如果考虑用一个平衡的二叉树结构来组织词类的结构关系，那么这种tHSM的计算复杂度又继续减小至${\mathcal{O}(\log |\mathcal{V}|)}$。
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.65\columnwidth]{./figures/thsm.jpg}
   \caption{树结构层次Softmax}
   \label{fig:thsm}
 \end{figure}
-对于tHSM，它可以被看作是cHSM的延伸。tHSM扩展了cHSM的思想，把Softmax层继续分裂，直到把原始的Softmax分裂成一个树结构（Tree）。所有的词都列在在这棵树的叶子节点（Leaf Node）上，而这棵树的中间节点表示词表的深层次结构，如图\ref{fig:thsm}所示。如果考虑用一个平衡的二叉树结构来组织词类的结构关系，那么这种tHSM的计算复杂度又继续减小至${\mathcal{O}(\log |\mathcal{V}|)}$。
 
 \subsubsection{LightRNN}
 \begin{figure}

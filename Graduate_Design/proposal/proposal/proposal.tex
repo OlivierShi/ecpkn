@@ -6,7 +6,7 @@
 
 
 \schoolname{北京航空航天大学中法工程师学院}
-\title{硕士学位论文文献综述}
+\title{硕士学位论文开题报告}
 \papertitle{基于词表分解优化的循环神经网络语言模型的研究}
 \specialty{工业工程}
 \studentnumber{ZY1624134}
@@ -28,13 +28,13 @@
 \begin{abstract_ch}
 语言模型在自然语言处理领域起着非常重要的作用，该性能的好坏直接影响例如机器翻译和语音识别等很多任务的发展。随着循环神经网络的提出以及应用于语言模型上，计算机对人类语言的建模更加精确，但是也带来模型训练和运行速度都下降。尤其是当文本数据的数量急剧增长，单词的词表会变得巨大，这直接导致计算消耗十分大，包括计算复杂度太高所引起的运行耗时以及模型参数量太大所引起的内存占用过于庞大。为了解决这些问题，历史上人们开发了很多技术与模型，这些方法可以被分为三类：基于采样的近似算法，基于词表分解的算法，基于字母级别的编码模型。这些方法在一定程度上能缓解那些问题，但各自仍然存在一些缺陷。
 
-本文首先概述语言模型的主要发展历史，详细阐述核心的建模方法——循环神经网络及其变种，解释大词表问题带来的重大挑战，列出了语言模型任务的国内外通用的标准数据集。然后上述所说的三大类前沿技术将会被总结分析优缺点，并重点讨论了基于词表分解的方法。最后，通过总结前人的方法，本文列出几个未来发展方向。
+本文首先概述语言模型的主要发展历史，详细阐述核心的建模方法——循环神经网络及其变种，解释大词表问题带来的重大挑战。然后上述所说的三大类前沿技术将会被总结分析优缺点，并重点讨论了基于词表分解的方法以及可能存在的优化的点。最后，通过总结前人的方法，本文列出几个未来发展方向，以及研究规划。
 \end{abstract_ch}
 \newpage
 \begin{abstract_en}
 Language model is a fundamental component in the field of neural language processing; its performance has direct influence on many tasks, e.g., machine translation and automatic speech recognition. With the propose of Recurrent Neural Network (RNN) and its inclusion in language model, language modeling by computer becomes more accuracy, yet producing the in-efficiency in the model’s training and operating. Especially when the text corpus growths explosively, vocabulary will become so huge that it causes both high computational complexity, which make it time-consuming to train as well as to infer, and excessive model size, which means the huge memory footprint. To tackle these problems, many techniques and models have been developed, mainly categorized as: sampling-based approximation, character level-based models, and vocabulary factorization-based methods.
 
-In this paper we first review the development of the language model, containing the detail introduction of recurrent neural network and its variants, the explanation of the problem of over-large vocabulary, and some standard datasets. Afterwards, we explore those three kinds of advanced methods and analyze their merit and demerit. Finally, by summarizing the previous researches, we list some possible directions and the future works.
+In this paper we first review the development of the language model, containing the detail introduction of recurrent neural network and its variants, the explanation of the problem of over-large vocabulary. Afterwards, we explore those three kinds of advanced methods and analyze their merit and demerit. Finally, by summarizing the previous researches, we list some possible directions and the future works.
 
 \end{abstract_en}
 \newpage
@@ -192,19 +192,10 @@ NCE方法有完美的理论证明：随着噪声样本$k$的数量增加，NCE�
 
 \subsection{基于词表分解预测方法}
 \label{sec:vocab_facto}
-\begin{figure}
-  \centering
-  \includegraphics[width=0.65\columnwidth]{./figures/softmax3.png}
-  \caption{三种不同的在Softmax层中词类组织关系的结构。(a) 层级组织结构；(b) 并列组织结构；(c) 分片组织结构，图中hf表示高频（high frequency），而lf表示低频（low frequency），其中lf0和lf1是根据词的低频程度把词分配起来。另外，在图中蓝色的单元表示包含历史信息和当前输入词信息的隐层，这一点对于这三种方法都一致。}
-  \label{fig:softmax}
-\end{figure}
+
 \subsubsection{Hierarchical Softmax}
-\begin{figure}
-  \centering
-  \includegraphics[width=0.65\columnwidth]{./figures/thsm.jpg}
-  \caption{树结构层次Softmax}
-  \label{fig:thsm}
-\end{figure}
+\label{sec:hsm}
+
 与前两类的方法不同的是，基于词表分解的方法是在词级别输入上进行建模的，而且该方法在预测的时候也没有近似。该类方法使用完整的词表，并且利用词表的结构性和层级性以及条件概率把原来的词的一步预测分解成多步预测问题。这一类的方法有很多，包括基于双层结构Softmax（Class-based Hierarchical Softmax, cHSM）的方法\cite{DBLP:conf/icassp/Goodman01,DBLP:conf/icassp/MikolovKBCK11,DBLP:conf/acl/ChenGA16,DBLP:conf/icml/GraveJCGJ17} 和基于树层级结构Softmax（Tree-based Hierarchical Softmax, tHSM）的方法\cite{DBLP:conf/aistats/MorinB05,DBLP:conf/nips/MnihH08}。
 
 对于cHSM来说，他们的核心想法是要把通过传统的Softmax进行词的预测方法分裂成两个步骤。原来的Softmax 是直接把一个词从词表中预测出来，而cHSM是先预测这个词属于的类别，然后再在这个类别中预测出具体哪个词，公式可以表示为如下：
@@ -222,41 +213,73 @@ cHSM从一开始由Goodman（2001）发明出来一直到现今仍然有相近�
   \item 并列组织结构：该结构将词的类下标和类中词下标合并在一起，然和同时预测这两个下标，如图\ref{fig:softmax}中(b)所示；
   \item 分片组织结构：该结构认为文本中的词会根据词出现频率而具有不同的重要性，词频越大，那么该词就越重要。基于这个想法，该结构先根据词频大小将词表划分成多个片段，然后给每个片段赋予不同的参数量，如果片段词频大，那么就要赋予更多的参数去学习他们的特征。其结构如图\ref{fig:softmax} 中(c) 所示。
 \end{itemize}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.65\columnwidth]{./figures/softmax3.png}
+  \caption{三种不同的在Softmax层中词类组织关系的结构。(a) 层级组织结构；(b) 并列组织结构；(c) 分片组织结构，图中hf表示高频（high frequency），而lf表示低频（low frequency），其中lf0和lf1是根据词的低频程度把词分配起来。另外，在图中蓝色的单元表示包含历史信息和当前输入词信息的隐层，这一点对于这三种方法都一致。}
+  \label{fig:softmax}
+\end{figure}
 
 对于tHSM，它可以被看作是cHSM的延伸。tHSM扩展了cHSM的思想，把Softmax层继续分裂，直到把原始的Softmax分裂成一个树结构（Tree）。所有的词都列在在这棵树的叶子节点（Leaf Node）上，而这棵树的中间节点表示词表的深层次结构，如图\ref{fig:thsm}所示。如果考虑用一个平衡的二叉树结构来组织词类的结构关系，那么这种tHSM的计算复杂度又继续减小至${\mathcal{O}(\log |\mathcal{V}|)}$。
+\begin{figure}
+  \centering
+  \includegraphics[width=0.65\columnwidth]{./figures/thsm.jpg}
+  \caption{树结构层次Softmax}
+  \label{fig:thsm}
+\end{figure}
 
 \subsubsection{LightRNN}
-\begin{figure}
+
+前面介绍的方法要么专门用来减小计算复杂度以加速，要么专门用来缩减模型的大小，却没有一个模型同时能在来两方面同时进行优化的。LightRNN方法的提出不仅能减小模型计算复杂度，还能大幅度缩减模型的大小\cite{DBLP:conf/nips/LiQYHL16}。基于该想法，LightRNN提出一个2-Component shared embedding，将词分配到一个二维的词表里面。词表所有相同行的词共享一个行向量，所有相同列的词共享一个列向量。而一个词由其对应的行向量与列向量联合表示。这样，我们就仅需要${2\sqrt{|\mathcal{V}|}}$个向量来表示词表中所有的词。对于每个用行标和列标表示的词来说，LightRNN更改了原始的RNN 结构来对双标表示的词进行编码，其结构如图\ref{fig:lightrnn}。这种方法能够将词嵌入层和Softmax层的维度降低至${\mathcal{O}(\sqrt{|\mathcal{V}|} \times |D|)}$ 和${\mathcal{O}(\sqrt{|\mathcal{V}|} \times |H|)}$。该方法的另一个值得学习的地方是将词交换问题变成一个最小费用最大流问题（Minimum Cost Maximum Flow, MCMF），并利用一个优化算法\cite{Preis1999}去解决这个问题。
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.65\columnwidth]{./figures/lightrnn.jpg}
   \caption{LightRNN}
   \label{fig:lightrnn}
 \end{figure}
-前面介绍的方法要么专门用来减小计算复杂度以加速，要么专门用来缩减模型的大小，却没有一个模型同时能在来两方面同时进行优化的。LightRNN方法的提出不仅能减小模型计算复杂度，还能大幅度缩减模型的大小\cite{DBLP:conf/nips/LiQYHL16}。基于该想法，LightRNN提出一个2-Component shared embedding，将词分配到一个二维的词表里面。词表所有相同行的词共享一个行向量，所有相同列的词共享一个列向量。而一个词由其对应的行向量与列向量联合表示。这样，我们就仅需要${2\sqrt{|\mathcal{V}|}}$个向量来表示词表中所有的词。对于每个用行标和列标表示的词来说，LightRNN更改了原始的RNN 结构来对双标表示的词进行编码，其结构如图\ref{fig:lightrnn}。这种方法能够将词嵌入层和Softmax层的维度降低至${\mathcal{O}(\sqrt{|\mathcal{V}|} \times |D|)}$ 和${\mathcal{O}(\sqrt{|\mathcal{V}|} \times |H|)}$。该方法的另一个值得学习的地方是将词交换问题变成一个最小费用最大流问题（Minimum Cost Maximum Flow, MCMF），并利用一个优化算法\cite{Preis1999}去解决这个问题。
 
 \section{拟解决的关键问题及对应的研究路线}
 \subsection{词聚类方法的研究}
+
+对于词表分解这一类的方法，他们的核心思想是利用词的结构性，然后先预测词的类别再去具体预测某一个词。对此，词的结构性是一个非常关键的点，词具有什么样的结构性，哪些词可以聚合到一次再合并成一个类，这也叫词的聚类（Clustering），这值得深入的探讨与研究。我们先探究前人在词表分解这些方法中使用的聚类方法。
+\begin{itemize}
+  \item 随机打乱（Random Shuffle）：即随机把词的顺序打乱再划分到一些类别中。
+  \item 词频划分（Frequency Binning）：先统计语料中每个词出现的频率，再把词按词频大小排序，最后把词按词频大小等距切割成多块，每块中的词具有相近的词频大小。这种方法认为，词的结构性表现在词频中，频率相同或相近的词具备相近的特性。有一些基于词表分解的方法是用该聚类方法的，如\cite{DBLP:conf/nips/MikolovSCCD13,DBLP:conf/acl/ChenGA16}。
+  \item 布朗聚类（Brown Clustering）：它是一种自底向上的层次聚类算法，基于n-gram模型和马尔科夫链模型（Markov Model）；布朗聚类是一种硬聚类，每一个词都在且只在唯一的一个类中。由于布朗聚类的原理本身就通过训练一个语言模型来优化词的结构关系，于是该方法能从一定程度上能从词义的角度将词聚类，其原理如图\ref{fig:brown_cluster}。
+\end{itemize}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.65\columnwidth]{./figures/brown_clustering.png}
+  \caption{布朗聚类的结构}
+  \label{fig:brown_cluster}
+\end{figure}
+
 \subsection{词表交换算法的研究}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.65\columnwidth]{./figures/mcmf.jpg}
+  \caption{将类别中的词交换问题转化为最小代价最大流问题}
+  \label{fig:mcmf}
+\end{figure}
+前一小节讲述了用词聚类方法预先将词划分到某些类别中，但这种方法是预训练的，也就是与当前的目标不可见的，那么通过该方法把词聚类并不一定适合模型，也就是说模型的学习过程不能全依赖预先得到的词结构表示。于是就需要一个词表交换算法（Class Exchange Algorithm），在模型的训练过程中将词的类别进行调换以更适用于该模型。LightRNN是典型的使用该思想的模型，它在训练过程中通过计算负对数似然（Negative Logarithm Likelihood, NLL）得到每个词赋给每个类的损失，然后需要找到一种方法让所有词都合理的赋给一个类并使得所有的损失加起来最小。这个问题可以被看作为最小代价最大流（Minimum Cost Maximum Flow, MCMF）的问题或者被看作为分配问题（Assignment Problem），见图\ref{fig:mcmf}。对此，我们需要开发出有效的算法进行更好的词交换。
 \subsection{基于词表分解的建模方式研究}
+我们在第\ref{sec:hsm}章节中详细介绍了词表分解中cHSM这一类的方法，以及属于这一类方法三种此类组织结构模型。通过分析，我们发现这三种结构虽然其Softmax结构大相径庭，但是他们之间有一点是相同的，就是各自的Softmax预测都是建立在一个隐层状态上的。虽然这个隐层状态所依赖的信息量相对来说比较充分，如当前输入词的信息、所有当前词的历史词的信息，但是cHSM要预测的有词所属的类以及类里面的词两部分，这两部分分别是在两个预测空间里搜索出正确答案。两个预测空间是不一致的，但是他们预测的依赖却是相同的，这可能会存在一些问题。针对这些问题，我们会继续研究挖掘，通过阅读相关的文献，关注相关的最前沿的研究成果，想出一些可能的解决方法，并开始做一些实验去验证与实践。
 
 \section{论文研究计划}
-\begin{itemize}
-  \item 2017年12月\~{}2018年1月
-  \item 整理资料，学习深入研究词聚类方法
-  \item 2018年2月\~{}2018年4月
-  \item 深入研究词表交换算法
-  \item 2018年5月\~{}2018年6月
-  \item 深入研究基于词表分解的建模方式
-  \item 2018年6月\~{}2018年7月
-  \item 代码整合，实验验证与完善
-  \item 2018年7月\~{}2018年8月
-  \item 整理资料和论文撰写
-\end{itemize}
+\begin{tabular}{r|l}
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  2017年12月——2018年2月& 整理资料，学习深入研究词聚类方法 \\
+  2018年2月——2018年4月 & 深入研究词表交换算法 \\
+  2018年4月——2018年6月 & 深入研究基于词表分解的建模方式 \\
+  2018年6月——2018年7月 & 代码整合，实验验证与完善 \\
+  2018年7月——2018年8月 & 整理资料和论文撰写
+\end{tabular}
+
 
 \section{总结与展望}
-本文首先介绍了语言模型的背景知识以及对语言模型进行深入研究的重要意义。然后，本文简要概述了语言模型的一发展历史，从一开始基于统计的N-gram语言模型，到深度学习被提出以来神经网络模型应用于语言模型使得语言模型的性能得到飞跃的提升，尤其是循环神经网络的引入，这触发了将循环神经网络应用于自然语言处理领域这一热潮。紧接着，本文从理论上分析循环神经网络语言模型的缺点，分析为何词表过大会带来灾难性的问题，并且详细的介绍了针对这个问题近几年学术界提出的新模型和新方法，本文把这些方法分成三大类，并对每一类方法都进行详细的阐述其原理，并解释为何这些方法能从一定角度上缓解词表过大的问题。
+本文首先讲述了论文选题的背景知识和研究意义，介绍了语言模型的背景知识以及对语言模型进行深入研究的重要意义。然后本文介绍了国内外研究现状和发展动态，简要概述了语言模型的一发展历史，从一开始基于统计的N-gram 语言模型，到深度学习被提出以来神经网络模型应用于语言模型使得语言模型的性能得到飞跃的提升，尤其是循环神经网络的引入，这触发了将循环神经网络应用于自然语言处理领域这一热潮。紧接着本文详细的介绍了研究目标和研究内容，从理论上分析循环神经网络语言模型的缺点，分析为何词表过大会带来灾难性的问题，并且详细的介绍了针对这个问题近几年学术界提出的新模型和新方法，本文把这些方法分成三大类，并对每一类方法都进行详细的阐述其原理，并解释为何这些方法能从一定角度上缓解词表过大的问题。再而本文简要的介绍了需要解决的问题和其对应研究路线，对于基于词表分解这一类的模型，本文提出三个重点研究方向，即词聚类方法、词表交换算法和词表分解的建模方式，并尝试从中发掘可以优化的点。
 
-通过阅读大量的关于语言模型的文献，能够对现有的方法都有了一定的了解。下一步，我们将对这些方法进行总结与归纳，发现其中的一些问题，并尝试进行优化。尤其是词表分解这一类的方法，我们可以尝试去做一些优化。针对词表分解这一类的方法，我们已经酝酿了一些初步的想法，下一步是要将想法实践出来，通过实验去验证这些想法，并在这个过程中再去分析和总结，再优化我们的想法。
+通过阅读大量的关于语言模型的文献，能够对现有的方法都有了一定的了解。下一步，我们将对这些方法进行总结与归纳，发现其中的一些问题，并尝试进行优化。尤其是词表分解这一类的方法，我们可以尝试去做一些优化。针对词表分解这一类的方法，我们已经酝酿了一些初步的想法，下一步是要将想法实践出来，通过实验去验证这些想法，并在这个过程中再去分析和总结，再优化我们的想法。最后，本文列出了具有针对性且详细的研究计划。
 \newpage
 \addcontentsline{toc}{section}{参考文献}
 \bibliography{bibs}
