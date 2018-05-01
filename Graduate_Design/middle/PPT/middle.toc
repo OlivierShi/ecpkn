@@ -1,0 +1,13 @@
+\select@language {french}
+\beamer@sectionintoc {1}{论文选题的背景与意义}{3}{0}{1}
+\beamer@sectionintoc {2}{论文工作计划}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{论文研究目标}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{论文主要研究内容}{7}{0}{2}
+\beamer@sectionintoc {3}{已经完成的工作}{8}{0}{3}
+\beamer@subsectionintoc {3}{1}{词表过大带来的问题}{8}{0}{3}
+\beamer@subsectionintoc {3}{2}{三大类模型变种}{9}{0}{3}
+\beamer@subsectionintoc {3}{3}{基于词表分解的语言模型}{13}{0}{3}
+\beamer@sectionintoc {4}{关键技术和难点}{16}{0}{4}
+\beamer@subsectionintoc {4}{1}{循环神经网络及其变种}{16}{0}{4}
+\beamer@subsectionintoc {4}{2}{词表分解优化}{19}{0}{4}
+\beamer@sectionintoc {5}{下一阶段工作计划}{20}{0}{5}

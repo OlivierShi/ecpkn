@@ -1,0 +1,23 @@
+\contentsline {section}{摘要}{1}{Doc-Start}
+\contentsline {section}{\numberline {1}论文工作计划}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}论文研究目标}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}论文主要研究内容}{5}{subsection.1.2}
+\contentsline {section}{\numberline {2}已经完成的工作}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}语言模型}{6}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}基于统计的语言模型}{6}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}基于循环神经网络语言模型}{7}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}大词表问题分析}{8}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}基于采样近似方法}{8}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}基于字符级别建模方法}{10}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}基于词表分解预测方法}{11}{subsection.2.5}
+\contentsline {subsubsection}{\numberline {2.5.1}Hierarchical Softmax}{11}{subsubsection.2.5.1}
+\contentsline {subsubsection}{\numberline {2.5.2}LightRNN}{13}{subsubsection.2.5.2}
+\contentsline {section}{\numberline {3}关键技术和难点}{13}{section.3}
+\contentsline {subsection}{\numberline {3.1}循环神经网络及其变种}{13}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}词表分解方案}{16}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}词表分解表示的建模方法研究}{17}{subsection.3.3}
+\contentsline {section}{\numberline {4}下一阶段工作计划}{18}{section.4}
+\contentsline {subsection}{\numberline {4.1}时间安排}{18}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}存在的问题}{18}{subsection.4.2}
+\contentsline {section}{\numberline {5}总结与展望}{18}{section.5}
+\contentsline {section}{参考文献}{20}{section.5}
