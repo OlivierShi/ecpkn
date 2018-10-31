@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2018.1.8)  1 MAY 2018 14:11
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2018.1.8)  16 OCT 2018 21:03
 entering extended mode
 **middle.tex
 (C:\Users\t-lish\Desktop\buaa\ecpkn\ecpkn\Graduate_Design\middle\middle.tex
@@ -859,9 +859,9 @@ Requested font "[lmroman12-bold]:mapping=tex-text" at 12.0pt
 Requested font "[lmroman12-bold]:mapping=tex-text" at 18.0pt
  -> C:/CTEX/MiKTeX/fonts/opentype/public/lm/lmroman12-bold.otf
 Requested font "KaiTi" at 18.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "KaiTi/ICU" at 18.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -870,21 +870,21 @@ Requested font "KaiTi/ICU" at 18.0pt
 Normal \count register pool exhausted, switching to extended pool.
 \g_fontspec_family_KaiTi_int=\count277
 Requested font "KaiTi/B/ICU" at 18.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 .................................................
 . fontspec info: "no-font-shape"
 . 
 . Could not resolve font KaiTi/B (it probably doesn't exist).
 .................................................
 Requested font "KaiTi/I/ICU" at 18.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 .................................................
 . fontspec info: "no-font-shape"
 . 
 . Could not resolve font KaiTi/I (it probably doesn't exist).
 .................................................
 Requested font "KaiTi/BI/ICU" at 18.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 .................................................
 . fontspec info: "no-font-shape"
 . 
@@ -905,32 +905,32 @@ LaTeX Font Warning: Font shape `EU1/KaiTi(0)/bx/n' undefined
 (Font)              using `EU1/KaiTi(0)/m/n' instead on input line 20.
 
 Requested font "KaiTi/ICU:" at 18.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "KaiTi/ICU:" at 18.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "[lmroman12-bold]:mapping=tex-text" at 26.0pt
  -> C:/CTEX/MiKTeX/fonts/opentype/public/lm/lmroman12-bold.otf
 Requested font "SimHei" at 26.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 Requested font "SimHei/ICU" at 26.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 \g_fontspec_family_SimHei_int=\count278
 Requested font "SimHei/B/ICU" at 26.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 .................................................
 . fontspec info: "no-font-shape"
 . 
 . Could not resolve font SimHei/B (it probably doesn't exist).
 .................................................
 Requested font "SimHei/I/ICU" at 26.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 .................................................
 . fontspec info: "no-font-shape"
 . 
 . Could not resolve font SimHei/I (it probably doesn't exist).
 .................................................
 Requested font "SimHei/BI/ICU" at 26.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 .................................................
 . fontspec info: "no-font-shape"
 . 
@@ -951,7 +951,7 @@ LaTeX Font Warning: Font shape `EU1/SimHei(0)/bx/n' undefined
 (Font)              using `EU1/SimHei(0)/m/n' instead on input line 20.
 
 Requested font "SimHei/ICU:script=latn;language=DFLT;" at 26.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 Requested font "[lmroman17-regular]:mapping=tex-text" at 16.0pt
  -> C:/CTEX/MiKTeX/fonts/opentype/public/lm/lmroman17-regular.otf
 LaTeX Font Info:    Calculating math sizes for size <16> on input line 20.
@@ -1007,9 +1007,9 @@ Requested font "cmr8" at 8.0pt
 Requested font "[lmroman12-bold]:mapping=tex-text" at 16.0pt
  -> C:/CTEX/MiKTeX/fonts/opentype/public/lm/lmroman12-bold.otf
 Requested font "KaiTi" at 16.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "KaiTi/ICU" at 16.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -1023,9 +1023,9 @@ Requested font "KaiTi/ICU" at 16.0pt
 . This font family consists of the following shapes:
 .................................................
 Requested font "KaiTi/ICU:" at 16.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "KaiTi/ICU:" at 16.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -1039,15 +1039,15 @@ Requested font "KaiTi/ICU:" at 16.0pt
 . This font family consists of the following shapes:
 .................................................
 Requested font "KaiTi/ICU:" at 16.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "KaiTi/ICU:" at 16.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "[lmroman12-bold]:mapping=tex-text" at 15.0pt
  -> C:/CTEX/MiKTeX/fonts/opentype/public/lm/lmroman12-bold.otf
 Requested font "KaiTi" at 15.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "KaiTi/ICU" at 15.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -1061,13 +1061,13 @@ Requested font "KaiTi/ICU" at 15.0pt
 . This font family consists of the following shapes:
 .................................................
 Requested font "KaiTi/ICU:" at 15.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "KaiTi/ICU:" at 15.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "SimHei" at 16.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 Requested font "SimHei/ICU" at 16.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -1076,11 +1076,11 @@ Requested font "SimHei/ICU" at 16.0pt
 . This font family consists of the following shapes:
 .................................................
 Requested font "SimHei/ICU:script=latn;language=DFLT;" at 16.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 Requested font "SimHei" at 15.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 Requested font "SimHei/ICU" at 15.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -1089,17 +1089,17 @@ Requested font "SimHei/ICU" at 15.0pt
 . This font family consists of the following shapes:
 .................................................
 Requested font "SimHei/ICU:script=latn;language=DFLT;" at 15.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
  [1
 
 ]
 Requested font "SimSun" at 16.0pt
- -> C:/windows/Fonts/simsun.ttc
+ -> C:/WINDOWS/Fonts/simsun.ttc
 Requested font "SimSun/ICU" at 16.0pt
- -> C:/windows/Fonts/simsun.ttc
+ -> C:/WINDOWS/Fonts/simsun.ttc
 \g_fontspec_family_SimSun_int=\count279
 Requested font "SimHei/I/ICU" at 16.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 .................................................
 . fontspec info: "no-font-shape"
 . 
@@ -1132,9 +1132,9 @@ Requested font "SimHei/I/ICU" at 16.0pt
 . <->"SimHei/ICU:script=latn;language=DFLT;"
 .................................................
 Requested font "SimSun" at 12.0pt
- -> C:/windows/Fonts/simsun.ttc
+ -> C:/WINDOWS/Fonts/simsun.ttc
 Requested font "SimSun/ICU" at 12.0pt
- -> C:/windows/Fonts/simsun.ttc
+ -> C:/WINDOWS/Fonts/simsun.ttc
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -1144,7 +1144,7 @@ Requested font "SimSun/ICU" at 12.0pt
 . This font family consists of the following shapes:
 .................................................
 Requested font "SimSun/ICU:script=latn;language=DFLT;" at 12.0pt
- -> C:/windows/Fonts/simsun.ttc
+ -> C:/WINDOWS/Fonts/simsun.ttc
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -1154,11 +1154,11 @@ Requested font "SimSun/ICU:script=latn;language=DFLT;" at 12.0pt
 . This font family consists of the following shapes:
 .................................................
 Requested font "SimHei/ICU:script=latn;language=DFLT;" at 12.0pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 Requested font "KaiTi" at 12.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "KaiTi/ICU" at 12.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 .................................................
 . fontspec info: "no-scripts"
 . 
@@ -1172,9 +1172,9 @@ Requested font "KaiTi/ICU" at 12.0pt
 . This font family consists of the following shapes:
 .................................................
 Requested font "KaiTi/ICU:" at 12.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "KaiTi/ICU:" at 12.0pt
- -> C:/windows/Fonts/simkai.ttf
+ -> C:/WINDOWS/Fonts/simkai.ttf
 Requested font "[lmroman6-regular]:mapping=tex-text" at 6.0pt
  -> C:/CTEX/MiKTeX/fonts/opentype/public/lm/lmroman6-regular.otf
 Requested font "cmmi12" at 12.0pt
@@ -1205,9 +1205,9 @@ Requested font "[lmroman17-regular]:mapping=tex-text" at 17.28pt
 Requested font "[lmroman12-bold]:mapping=tex-text" at 17.28pt
  -> C:/CTEX/MiKTeX/fonts/opentype/public/lm/lmroman12-bold.otf
 Requested font "SimSun" at 17.28pt
- -> C:/windows/Fonts/simsun.ttc
+ -> C:/WINDOWS/Fonts/simsun.ttc
 Requested font "SimSun/ICU" at 17.28pt
- -> C:/windows/Fonts/simsun.ttc
+ -> C:/WINDOWS/Fonts/simsun.ttc
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -1217,7 +1217,7 @@ Requested font "SimSun/ICU" at 17.28pt
 . This font family consists of the following shapes:
 .................................................
 Requested font "SimHei/ICU:script=latn;language=DFLT;" at 17.28pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
 
 (C:\Users\t-lish\Desktop\buaa\ecpkn\ecpkn\Graduate_Design\middle\middle.toc)
 \tf@toc=\write4
@@ -1228,9 +1228,9 @@ Requested font "[lmroman12-regular]:mapping=tex-text" at 14.4pt
 Requested font "[lmroman12-bold]:mapping=tex-text" at 14.4pt
  -> C:/CTEX/MiKTeX/fonts/opentype/public/lm/lmroman12-bold.otf
 Requested font "SimSun" at 14.4pt
- -> C:/windows/Fonts/simsun.ttc
+ -> C:/WINDOWS/Fonts/simsun.ttc
 Requested font "SimSun/ICU" at 14.4pt
- -> C:/windows/Fonts/simsun.ttc
+ -> C:/WINDOWS/Fonts/simsun.ttc
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -1240,7 +1240,7 @@ Requested font "SimSun/ICU" at 14.4pt
 . This font family consists of the following shapes:
 .................................................
 Requested font "SimHei/ICU:script=latn;language=DFLT;" at 14.4pt
- -> C:/windows/Fonts/simhei.ttf
+ -> C:/WINDOWS/Fonts/simhei.ttf
  [4] [5] [6]
 File: ./figures/rnnlm.png Graphic file (type QTm)
  <use  "./figures/rnnlm.png" > [7]
@@ -1292,7 +1292,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  20657 strings out of 430478
  394848 string characters out of 3191503
- 434471 words of memory out of 3000000
+ 434594 words of memory out of 3000000
  23527 multiletter control sequences out of 15000+200000
  11770 words of font info for 93 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
